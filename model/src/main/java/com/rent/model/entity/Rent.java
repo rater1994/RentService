@@ -9,18 +9,18 @@ import java.sql.Date;
 public class Rent {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "User id")
+    @Column(name = "UserId")
     private Integer userId;
 
-    @Column(name = "Car id")
+    @Column(name = "CarId")
     private Integer carId;
 
-    @Column(name = "Start date")
+    @Column(name = "StartDate")
     private Date startDate;
 
-    @Column(name = "End date")
+    @Column(name = "EndDate")
     private Date endDate;
 
     @Column(name = "Price")
@@ -69,19 +69,19 @@ public class Rent {
     public RentDto toDto(){
         RentDto rentDto = new RentDto();
 
+        rentDto.setUserId(this.userId);
         rentDto.setCarId(this.carId);
         rentDto.setStartDate(this.startDate);
         rentDto.setEndDate(this.endDate);
-        rentDto.setUserId(this.userId);
         rentDto.setPrice(this.price);
         return rentDto;
     }
 
     public Rent update(RentDto dto){
+        this.userId = dto.getUserId();
         this.carId = dto.getCarId();
         this.startDate = dto.getStartDate();
         this.endDate = dto.getEndDate();
-        this.userId = dto.getUserId();
         this.price = dto.getPrice();
         return this;
     }

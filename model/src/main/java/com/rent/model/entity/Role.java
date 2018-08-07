@@ -2,15 +2,13 @@ package com.rent.model.entity;
 
 import com.rent.model.dto.RoleDto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @Column(name = "Admin")
     private boolean admin;
@@ -36,6 +34,7 @@ public class Role {
 
     public RoleDto toDto(){
         RoleDto roleDto = new RoleDto();
+
         roleDto.setAdmin(this.admin);
         roleDto.setClient(this.client);
         return roleDto;

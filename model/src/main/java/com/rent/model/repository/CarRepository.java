@@ -1,8 +1,9 @@
 package com.rent.model.repository;
-
 import com.rent.model.entity.Car;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CarRepository extends CrudRepository <Car, String > {
+@Repository
+public interface CarRepository extends JpaRepository <Car, Long > {
 
 }

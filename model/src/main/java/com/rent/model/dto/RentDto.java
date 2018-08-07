@@ -9,7 +9,7 @@ public class RentDto {
     private Integer carId;
     private Date startDate;
     private Date endDate;
-    private double price;
+    private Double price;
 
     public Integer getUserId() {
         return userId;

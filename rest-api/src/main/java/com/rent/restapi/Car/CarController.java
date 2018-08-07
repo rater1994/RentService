@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping("/car")
 public interface CarController {
 
-    @PostMapping("/add")
+  /*  @PostMapping("/add")
     ResponseEntity addCar(@RequestBody CarDto car);
-
+*/
     @GetMapping("/list")
     List<CarDto> getAllCars();
 

@@ -3,25 +3,25 @@ package com.rent.model.entity;
 import javax.persistence.*;
 import com.rent.model.dto.CarDto;
 
-@Entity //
+@Entity
 public class Car {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "Registration number")
+    @Column(name = "RegistrationNumber")
     private String registrationNumber;
 
-    @Column(name = "Combustible car")
+    @Column(name = "CombustibleCar")
     private String combustibleCar;
 
-    @Column(name = "Car price")
-    private double carPrice;
+    @Column(name = "CarPrice")
+    private Double carPrice;
 
-    @Column(name ="Transmission car")
+    @Column(name ="TransmissionCar")
     private String transmissionCar;
 
-    @Column(name ="Mark car")
+    @Column(name ="MarkCar")
     private String markCar;
 
     @Column(name = "Used")
@@ -68,11 +68,11 @@ public class Car {
         this.registrationNumber = registrationNumber;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -96,14 +96,14 @@ public class Car {
         return carDto;
     }
 
-    public Car update(CarDto dto){
+    public void update(CarDto dto){
         this.carPrice = dto.getCarPrice();
         this.combustibleCar = dto.getCombustibleCar();
         this.markCar = dto.getMarkCar();
         this.registrationNumber = dto.getRegistrationNumber();
         this.transmissionCar = dto.getTransmissionCar();
         this.used = dto.isUsed();
-        return this;
+
     }
 
 

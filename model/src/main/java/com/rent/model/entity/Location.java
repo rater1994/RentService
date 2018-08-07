@@ -2,16 +2,14 @@ package com.rent.model.entity;
 
 import com.rent.model.dto.LocationDto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "Country")
     private String Country;
@@ -19,7 +17,7 @@ public class Location {
     @Column(name = "City")
     private String City;
 
-    @Column(name = "Street name")
+    @Column(name = "StreetName")
     private String streetName;
 
     @Column(name = "Number")
@@ -71,7 +69,7 @@ public class Location {
         this.City = dto.getCity();
         this.streetName = dto.getStreetName();
         this.number = dto.getNumber();
-        return  this;
+       return this;
     }
 
 }
