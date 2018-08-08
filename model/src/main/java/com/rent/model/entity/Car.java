@@ -25,7 +25,7 @@ public class Car {
     private String markCar;
 
     @Column(name = "Used")
-    private boolean used;
+    private boolean used = true;
 
 
     public String getMarkCark() {
@@ -80,11 +80,11 @@ public class Car {
         return used;
     }
 
-    public void setUsed(boolean used) {
+    public void setUsed(Boolean used) {
         this.used = used;
     }
 
-    public CarDto toDto(){
+    public CarDto toCarDto(){
         CarDto carDto = new CarDto();
 
         carDto.setCarPrice(this.carPrice);

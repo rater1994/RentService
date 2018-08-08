@@ -64,7 +64,6 @@ public class LocationControllerImpl implements LocationController {
     public ResponseEntity  deleteLocation(@PathVariable Long id) {
         Location location = locationRepository.findById(id).get();
         locationRepository.delete(location);
-
         return new ResponseEntity<String>("The location with id:{id}  was deleted!", HttpStatus.OK);
 
 

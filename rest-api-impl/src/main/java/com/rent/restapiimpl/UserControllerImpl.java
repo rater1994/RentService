@@ -67,4 +67,17 @@ public class UserControllerImpl implements UserController {
         return new ResponseEntity("User deleted", HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity login(@RequestBody UserDto userS) {
+        User user = userRepository.findByUsername(userS.getUsername());
+        if(user!=null){
+        if(user.getPassword().equals(userS.getPassword())){
+            return  new ResponseEntity("Login succesful", HttpStatus.OK);
+        }else{
+            return new ResponseEntity("Incorrect password",HttpStatus.BAD_GATEWAY);
+            }
+        }
+        return new ResponseEntity("Username not exist!",HttpStatus.BAD_REQUEST);
+    }
+
 }
