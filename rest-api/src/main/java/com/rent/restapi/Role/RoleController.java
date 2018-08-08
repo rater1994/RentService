@@ -13,4 +13,6 @@ public interface RoleController {
 
     @GetMapping("/list")
     List<RoleDto> getAllRole();
+
+
 }

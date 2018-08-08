@@ -8,10 +8,10 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    //@Column(name = "Username")
+    @Column(name = "Username")
     private String username;
 
-    //@Column(name = "Password")
+    @Column(name = "Password")
     private String password;
 
 
@@ -39,7 +39,7 @@ public class User {
         this.id = id;
     }
 
-    public UserDto toDto(){
+    public UserDto toUserDto(){
         UserDto userDto = new UserDto();
 
         userDto.setUsername(this.username);

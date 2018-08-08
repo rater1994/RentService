@@ -55,7 +55,7 @@ public class Location {
         this.number = number;
     }
 
-    public LocationDto locationDto(){
+    public LocationDto toLocationDto(){
         LocationDto locationDto = new LocationDto();
         locationDto.setCountry(this.Country);
         locationDto.setCity(this.City);
