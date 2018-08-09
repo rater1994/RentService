@@ -5,7 +5,6 @@ import com.rent.model.dto.CarDto;
 import com.rent.model.entity.Car;
 import com.rent.model.repository.CarRepository;
 import com.rent.restapi.Car.CarController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +17,14 @@ import java.util.List;
 @RestController
 public class CarControllerImpl implements CarController {
 
-    @Autowired
-    CarRepository carRepository;
+/*    @Autowired
+    CarRepository carRepository;*/
 
+    private final CarRepository carRepository;
+
+    public CarControllerImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
 
 
     @Override
@@ -40,7 +44,6 @@ public class CarControllerImpl implements CarController {
         carRepository.save(car);
         return new ResponseEntity("The car was added", HttpStatus.OK);
     }
-
 
 
     @Override
