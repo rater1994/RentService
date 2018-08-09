@@ -1,9 +1,8 @@
 package com.rent.restapi.Rent;
 
 import com.rent.model.dto.RentDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,4 +12,16 @@ public interface RentController {
 
     @GetMapping("/list")
     List<RentDto> getAllRents();
+
+    @PostMapping("/add")
+    ResponseEntity addRent(@RequestBody RentDto rentDto);
+
+    @GetMapping("/find/{id}")
+    RentDto findRent(@PathVariable Long id);
+
+    @PutMapping("/edit/{id}")
+    ResponseEntity editRent(@RequestBody RentDto rentDto,@PathVariable Long id);
+
+    @DeleteMapping("/delete/{id}")
+    ResponseEntity deleteRent(@PathVariable Long id);
 }

@@ -11,10 +11,10 @@ public class Role {
     private Long id;
 
     @Column(name = "Admin")
-    private boolean admin;
+    private boolean admin = true;
 
     @Column(name = "Client")
-    private boolean client;
+    private boolean client = true;
 
     public boolean isAdmin() {
         return admin;
@@ -32,7 +32,7 @@ public class Role {
         this.client = client;
     }
 
-    public RoleDto toDto(){
+    public RoleDto toRoleDto(){
         RoleDto roleDto = new RoleDto();
 
         roleDto.setAdmin(this.admin);
