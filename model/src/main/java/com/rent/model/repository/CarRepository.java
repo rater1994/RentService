@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface CarRepository extends JpaRepository <Car, Long > {
-
+    Car findByUsed(String used);
 }

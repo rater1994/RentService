@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/car")
 public interface CarController {
 
-        //All method: add, edit, list, delete
+    //All method: add, edit, list, delete
 
     @GetMapping("/list")
     List<CarDto> getAllCars();
@@ -29,6 +29,7 @@ public interface CarController {
     @GetMapping("/find/{id}")
     CarDto findCar(@PathVariable Long id);
 
-    @GetMapping("/list/available")
-    List<CarDto> getAllAvailableCar();
+    @GetMapping("/list/available/{used}")
+    CarDto getAllAvailableCar(@PathVariable String used);
+
 }

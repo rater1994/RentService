@@ -8,7 +8,7 @@ public class CarDto {
     private double carPrice;
     private String transmissionCar;
     private String markCar;
-    private boolean used;
+    private String used;
 
     public String getRegistrationNumber() {
         return registrationNumber;
@@ -50,13 +50,12 @@ public class CarDto {
         this.markCar = markCar;
     }
 
-    public boolean isUsed() {
+
+    public String getUsed() {
         return used;
     }
 
-    public void setUsed(boolean used) {
+    public void setUsed(String used) {
         this.used = used;
     }
-
-
 }

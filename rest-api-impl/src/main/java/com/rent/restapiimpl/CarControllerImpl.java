@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class CarControllerImpl implements CarController {
@@ -40,6 +42,7 @@ public class CarControllerImpl implements CarController {
     @Override
     public ResponseEntity addCar(@RequestBody CarDto carDto) {
         Car car = new Car();
+        //carDto.setUsed(true);
         car.update(carDto);
         carRepository.save(car);
         return new ResponseEntity("The car was added", HttpStatus.OK);
@@ -51,9 +54,9 @@ public class CarControllerImpl implements CarController {
         Car car = carRepository.findById(id).get();
         car.setCarPrice(carDto.getCarPrice());
         car.setCombustibleCar(carDto.getCombustibleCar());
-        car.setMarkCark(carDto.getMarkCar());
+        car.setMarkCar(carDto.getMarkCar());
         car.setRegistrationNumber(carDto.getRegistrationNumber());
-        car.setUsed(carDto.isUsed());
+        car.setUsed(carDto.getUsed());
         carRepository.save(car);
         return new ResponseEntity("The car was edit succesfull", HttpStatus.OK);
     }
@@ -73,16 +76,16 @@ public class CarControllerImpl implements CarController {
         return car.toCarDto();
     }
 
-
     @Override
-    public List<CarDto> getAllAvailableCar() {
-        Car car  = new Car();
-        List<CarDto> list = new ArrayList<>();
-        if(car.isUsed() == true){
-            list.add(car.toCarDto());
-        }
-        return list;
+    public CarDto getAllAvailableCar(@PathVariable String used) {
+        Car car = new Car();
+        car = carRepository.findByUsed(used);
+        List myLyst = new ArrayList();
+        myLyst.add(car.toCarDto());
+        return car.toCarDto();
     }
+
+
 }
 
 

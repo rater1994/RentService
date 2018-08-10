@@ -1,6 +1,7 @@
 package com.rent.model.entity;
 
 import javax.persistence.*;
+
 import com.rent.model.dto.CarDto;
 
 @Entity
@@ -24,32 +25,16 @@ public class Car {
     @Column(name ="MarkCar")
     private String markCar;
 
+
     @Column(name = "Used")
-    private boolean used = true;
+    private String used;
 
-
-    public String getMarkCark() {
-        return markCar;
+    public String getRegistrationNumber() {
+        return registrationNumber;
     }
 
-    public void setMarkCark(String markCar) {
-        this.markCar = markCar;
-    }
-
-    public String getTransmissionCar() {
-        return transmissionCar;
-    }
-
-    public void setTransmissionCar(String transmissionCar) {
-        this.transmissionCar = transmissionCar;
-    }
-
-    public double getCarPrice() {
-        return carPrice;
-    }
-
-    public void setCarPrice(double carPrice) {
-        this.carPrice = carPrice;
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
     public String getCombustibleCar() {
@@ -60,27 +45,35 @@ public class Car {
         this.combustibleCar = combustibleCar;
     }
 
-    public String getRegistrationNumber() {
-        return registrationNumber;
+    public Double getCarPrice() {
+        return carPrice;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    public void setCarPrice(Double carPrice) {
+        this.carPrice = carPrice;
     }
 
-    public Long getId() {
-        return id;
+    public String getTransmissionCar() {
+        return transmissionCar;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTransmissionCar(String transmissionCar) {
+        this.transmissionCar = transmissionCar;
     }
 
-    public boolean isUsed() {
+    public String getMarkCar() {
+        return markCar;
+    }
+
+    public void setMarkCar(String markCar) {
+        this.markCar = markCar;
+    }
+
+    public String getUsed() {
         return used;
     }
 
-    public void setUsed(Boolean used) {
+    public void setUsed(String used) {
         this.used = used;
     }
 
@@ -102,7 +95,7 @@ public class Car {
         this.markCar = dto.getMarkCar();
         this.registrationNumber = dto.getRegistrationNumber();
         this.transmissionCar = dto.getTransmissionCar();
-        this.used = dto.isUsed();
+        this.used = dto.getUsed();
 
     }
 
