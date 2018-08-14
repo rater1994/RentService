@@ -2,6 +2,7 @@ package com.rent.restapi.User;
 
 import com.rent.model.dto.UserDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -44,12 +44,14 @@ public class User {
 
         userDto.setUsername(this.username);
         userDto.setPassword(this.password);
+        userDto.setId(this.id);
         return userDto;
     }
 
     public User update( UserDto dto){
         this.username = dto.getUsername();
         this.password = dto.getPassword();
+        this.id = dto.getId();
         return this;
     }
 }

@@ -61,6 +61,8 @@ public class Location {
         locationDto.setCity(this.City);
         locationDto.setStreetName(this.streetName);
         locationDto.setNumber(this.number);
+        locationDto.setId(this.id);
+
         return locationDto;
     }
 
@@ -69,7 +71,15 @@ public class Location {
         this.City = dto.getCity();
         this.streetName = dto.getStreetName();
         this.number = dto.getNumber();
+        this.id = dto.getId();
        return this;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

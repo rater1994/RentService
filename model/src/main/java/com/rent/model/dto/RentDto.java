@@ -10,6 +10,7 @@ public class RentDto {
     private Date startDate;
     private Date endDate;
     private Double price;
+    private Long id;
 
     public Integer getUserId() {
         return userId;
@@ -52,7 +53,13 @@ public class RentDto {
     }
 
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
 
 

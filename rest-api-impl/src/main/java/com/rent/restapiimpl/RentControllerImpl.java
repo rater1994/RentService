@@ -4,6 +4,7 @@ import com.rent.model.dto.RentDto;
 import com.rent.model.entity.Rent;
 import com.rent.model.repository.RentRepository;
 import com.rent.restapi.Rent.RentController;
+import com.rent.serviceapi.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,49 +19,44 @@ import java.util.List;
 public class RentControllerImpl implements RentController {
 
     @Autowired
-    RentRepository rentRepository;
+    private RentRepository rentRepository;
+
+    @Autowired
+    private RentService rentService;
 
     @Override
     public List<RentDto> getAllRents() {
-
-        List<RentDto> list = new ArrayList<>();
-        rentRepository.findAll().forEach(rent -> {
-            list.add(rent.toRentDto());
-        });
-        return list;
+        return rentService.getAllRentDto();
     }
 
     @Override
     public ResponseEntity addRent(@RequestBody RentDto rentDto) {
-        Rent rent = new Rent();
-        rent.update(rentDto);
-        rentRepository.save(rent);
-        return new ResponseEntity("Rent added", HttpStatus.OK);
+      rentService.addRent(rentDto);
+        return ResponseEntity.ok(rentDto);
     }
 
     @Override
     public RentDto findRent(@PathVariable Long id) {
-        Rent rent = rentRepository.findById(id).get();
-        return rent.toRentDto();
+       return rentService.findRent(id);
     }
 
     @Override
     public ResponseEntity editRent(@RequestBody RentDto rentDto,@PathVariable Long id) {
-        Rent rent = rentRepository.findById(id).get();
-        rent.setCarId(rentDto.getCarId());
-        rent.setUserId(rentDto.getUserId());
-        rent.setStartDate(rentDto.getStartDate());
-        rent.setEndDate(rentDto.getEndDate());
-        rent.setPrice(rentDto.getPrice());
-        rentRepository.save(rent);
-        return new ResponseEntity("Rent was edid!",HttpStatus.OK);
+      final RentDto returnRentDto = rentService.editRent(rentDto, id);
+      if(returnRentDto == null){
+          return ResponseEntity.notFound().build();
+      }
+      return ResponseEntity.ok(returnRentDto);
     }
 
     @Override
     public ResponseEntity deleteRent(@PathVariable Long id) {
-        Rent rent = rentRepository.findById(id).get();
-        rentRepository.delete(rent);
-        return new ResponseEntity("Rent was deleted!",HttpStatus.OK);
+        try{
+            rentService.deleteRent(id);
+        }catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().build();
     }
 
 

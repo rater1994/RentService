@@ -8,6 +8,7 @@ public class LocationDto {
     private String City;
     private String streetName;
     private String number;
+    private Long id;
 
 
     public String getCountry() {
@@ -44,5 +45,13 @@ public class LocationDto {
 
     public int hashCode(){
         return Objects.hash(Country,City,streetName,number);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

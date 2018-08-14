@@ -37,13 +37,23 @@ public class Role {
 
         roleDto.setAdmin(this.admin);
         roleDto.setClient(this.client);
+        roleDto.setId(this.id);
         return roleDto;
     }
 
     public Role update(RoleDto dto){
         this.admin = dto.isAdmin();
         this.client= dto.isClient();
+        this.id = dto.getId();
         return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
 

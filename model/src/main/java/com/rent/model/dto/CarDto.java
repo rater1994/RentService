@@ -9,6 +9,7 @@ public class CarDto {
     private String transmissionCar;
     private String markCar;
     private String used;
+    private Long id;
 
     public String getRegistrationNumber() {
         return registrationNumber;
@@ -57,5 +58,13 @@ public class CarDto {
 
     public void setUsed(String used) {
         this.used = used;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

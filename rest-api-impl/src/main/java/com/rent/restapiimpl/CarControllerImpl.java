@@ -5,6 +5,9 @@ import com.rent.model.dto.CarDto;
 import com.rent.model.entity.Car;
 import com.rent.model.repository.CarRepository;
 import com.rent.restapi.Car.CarController;
+import com.rent.serviceapi.CarService;
+import com.rent.serviceapiimpl.CarServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,70 +25,54 @@ public class CarControllerImpl implements CarController {
 /*    @Autowired
     CarRepository carRepository;*/
 
-    private final CarRepository carRepository;
 
-    public CarControllerImpl(CarRepository carRepository) {
+    @Autowired
+    private CarService carService;
+
+    @Autowired
+    private CarRepository carRepository;
+
+
+    public CarControllerImpl(CarRepository carRepository,CarService carService) {
         this.carRepository = carRepository;
+        this.carService = carService;
     }
-
 
     @Override
         public List<CarDto> getAllCars() {
-            List<CarDto> list = new ArrayList<>();
-            carRepository.findAll().forEach(car -> {
-                list.add(car.toCarDto());
-            });
-            return list;
-        }
-
+        return carService.getAllCarsDTO();
+    }
 
     @Override
     public ResponseEntity addCar(@RequestBody CarDto carDto) {
-        Car car = new Car();
-        //carDto.setUsed(true);
-        car.update(carDto);
-        carRepository.save(car);
-        return new ResponseEntity("The car was added", HttpStatus.OK);
+        carService.addCarDTO(carDto);
+        //return new ResponseEntity("The car was added", HttpStatus.OK);
+        return ResponseEntity.ok(carDto);
     }
-
 
     @Override
     public ResponseEntity editCar(@RequestBody CarDto carDto, @PathVariable Long id) {
-        Car car = carRepository.findById(id).get();
-        car.setCarPrice(carDto.getCarPrice());
-        car.setCombustibleCar(carDto.getCombustibleCar());
-        car.setMarkCar(carDto.getMarkCar());
-        car.setRegistrationNumber(carDto.getRegistrationNumber());
-        car.setUsed(carDto.getUsed());
-        carRepository.save(car);
-        return new ResponseEntity("The car was edit succesfull", HttpStatus.OK);
+        final CarDto returnCarDto = carService.editCarDTO(carDto, id);
+        if (returnCarDto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(returnCarDto);
+        //return new ResponseEntity("The car was edit succesfull", HttpStatus.OK);
     }
-
-
-
     @Override
     public ResponseEntity deleteCar(@PathVariable Long id) {
-        Car car = carRepository.findById(id).get();
-        carRepository.delete(car);
-        return new ResponseEntity("Car was deleted!", HttpStatus.OK);
-    }
+        try {
+            carService.deleteCarDTO(id);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
 
+        return ResponseEntity.ok().build();
+    }
     @Override
     public CarDto findCar(@PathVariable Long id) {
-        Car car = carRepository.findById(id).get();
-        return car.toCarDto();
+         return carService.findById(id);
     }
-
-    @Override
-    public CarDto getAllAvailableCar(@PathVariable String used) {
-        Car car = new Car();
-        car = carRepository.findByUsed(used);
-        List myLyst = new ArrayList();
-        myLyst.add(car.toCarDto());
-        return car.toCarDto();
-    }
-
-
 }
 
 

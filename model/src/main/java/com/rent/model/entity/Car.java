@@ -7,8 +7,17 @@ import com.rent.model.dto.CarDto;
 @Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+   @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "Id")
     private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Column(name = "RegistrationNumber")
     private String registrationNumber;
@@ -86,15 +95,18 @@ public class Car {
         carDto.setRegistrationNumber(this.registrationNumber);
         carDto.setTransmissionCar(this.transmissionCar);
         carDto.setUsed(this.used);
+        carDto.setId(this.id);
         return carDto;
     }
 
     public void update(CarDto dto){
+
         this.carPrice = dto.getCarPrice();
         this.combustibleCar = dto.getCombustibleCar();
         this.markCar = dto.getMarkCar();
         this.registrationNumber = dto.getRegistrationNumber();
         this.transmissionCar = dto.getTransmissionCar();
+        this.id = dto.getId();
         this.used = dto.getUsed();
 
     }

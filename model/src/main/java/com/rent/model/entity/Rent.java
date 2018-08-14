@@ -74,6 +74,7 @@ public class Rent {
         rentDto.setStartDate(this.startDate);
         rentDto.setEndDate(this.endDate);
         rentDto.setPrice(this.price);
+        rentDto.setId(this.id);
         return rentDto;
     }
 
@@ -83,6 +84,15 @@ public class Rent {
         this.startDate = dto.getStartDate();
         this.endDate = dto.getEndDate();
         this.price = dto.getPrice();
+        this.id = dto.getId();
         return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
