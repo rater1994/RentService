@@ -1,4 +1,3 @@
-/*
 package com.rent.boot;
 
 import org.junit.Test;
@@ -15,4 +14,3 @@ public class BootApplicationTests {
     }
 
 }
-*/

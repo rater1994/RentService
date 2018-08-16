@@ -1,4 +1,3 @@
-/*
 package com.rent.restapiimpl;
 
 import org.junit.Test;
@@ -15,4 +14,3 @@ public class RestApiImplApplicationTests {
     }
 
 }
-*/
