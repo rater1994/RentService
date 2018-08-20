@@ -21,8 +21,10 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDto findById(Long id) {
-        Car car = carRepository.findById(id).get();
-        return car.toCarDto();
+        if (carRepository.findById(id).isPresent()) {
+            return carRepository.findById(id).get().toCarDto();
+        }
+       return  null;
     }
 
     @Override

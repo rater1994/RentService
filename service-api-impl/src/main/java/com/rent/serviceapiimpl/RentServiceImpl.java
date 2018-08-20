@@ -5,6 +5,7 @@ import com.rent.model.entity.Rent;
 import com.rent.model.repository.RentRepository;
 import com.rent.serviceapi.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +39,10 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public RentDto findRent(Long id) {
-        Rent rent = rentRepository.findById(id).get();
-        return rent.toRentDto();
+        if(rentRepository.findById(id).isPresent()){
+            rentRepository.findById(id).get().toRentDto();
+        }
+        return null;
     }
 
     @Override
