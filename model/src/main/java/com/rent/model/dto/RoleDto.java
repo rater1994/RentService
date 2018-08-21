@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public class RoleDto {
     private Long id;
+    private Long userId;
+    private String userName;
 
     public String getUserName() {
         return userName;
@@ -14,9 +16,7 @@ public class RoleDto {
         this.userName = userName;
     }
 
-    private String userName;
 
-    private Long userId;
 
     public Long getId() {
         return id;
