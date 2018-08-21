@@ -4,6 +4,8 @@ package com.rent.model.dto;
 import java.util.Objects;
 
 public class RoleDto {
+
+    //variables
     private Long id;
     private Long userId;
     private String userName;
