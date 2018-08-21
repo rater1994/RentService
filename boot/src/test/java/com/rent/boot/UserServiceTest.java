@@ -51,8 +51,6 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
-
-    //@InjectMocks
     @Mock
     private UserController userController;
 
@@ -64,6 +62,7 @@ public class UserServiceTest {
         UserDto userDto = new UserDto();
         userDto.setUsername("user1");
         userDto.setPassword("P@ssw0rd");
+
 
         final UserDto dbUser = userService.addUser(userDto);
         Assert.assertEquals(userDto.getUsername(),dbUser.getUsername());

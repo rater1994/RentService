@@ -32,7 +32,7 @@ public class RoleControllerImpl implements RoleController {
     @Override
     public ResponseEntity addRole(@RequestBody RoleDto roleDto) {
         roleService.roleAddDto(roleDto);
-        return new ResponseEntity("Role was added", HttpStatus.OK);
+        return ResponseEntity.ok(roleDto);
     }
 
     @Override

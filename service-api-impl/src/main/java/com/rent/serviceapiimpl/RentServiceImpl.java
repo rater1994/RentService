@@ -40,7 +40,7 @@ public class RentServiceImpl implements RentService {
     @Override
     public RentDto findRent(Long id) {
         if(rentRepository.findById(id).isPresent()){
-            rentRepository.findById(id).get().toRentDto();
+            return rentRepository.findById(id).get().toRentDto();
         }
         return null;
     }
@@ -55,7 +55,7 @@ public class RentServiceImpl implements RentService {
             rent.setEndDate(rentDto.getEndDate());
             rent.setUserId(rentDto.getUserId());
             rent.setCarId(rentDto.getCarId());
-            rentRepository.save(rent).toRentDto();
+           return rentRepository.save(rent).toRentDto();
         }
         return null;
     }
