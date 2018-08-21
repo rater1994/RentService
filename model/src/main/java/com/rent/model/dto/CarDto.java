@@ -5,7 +5,7 @@ import java.util.Objects;
 public class CarDto {
     private String registrationNumber;
     private String combustibleCar;
-    private double carPrice;
+    private Double carPrice;
     private String transmissionCar;
     private String markCar;
     private String used;

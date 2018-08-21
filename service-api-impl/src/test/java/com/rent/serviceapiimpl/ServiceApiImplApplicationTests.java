@@ -1,4 +1,3 @@
-/*
 package com.rent.serviceapiimpl;
 
 import org.junit.Test;
@@ -14,5 +13,6 @@ public class ServiceApiImplApplicationTests {
     public void contextLoads() {
     }
 
+
+
 }
-*/

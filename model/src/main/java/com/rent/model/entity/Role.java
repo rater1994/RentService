@@ -6,55 +6,50 @@ import javax.persistence.*;
 
 @Entity
 public class Role {
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "Admin")
-    private boolean admin = true;
+    private String  userName;
 
-    @Column(name = "Client")
-    private boolean client = true;
+    @Column(name = "UserId")
+    private Long userId;
 
-    public boolean isAdmin() {
-        return admin;
+
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public boolean isClient() {
-        return client;
-    }
-
-    public void setClient(boolean client) {
-        this.client = client;
-    }
 
     public RoleDto toRoleDto(){
         RoleDto roleDto = new RoleDto();
 
-        roleDto.setAdmin(this.admin);
-        roleDto.setClient(this.client);
+        roleDto.setUserName(this.userName);
+        roleDto.setUserId(this.userId);
         roleDto.setId(this.id);
         return roleDto;
     }
 
     public Role update(RoleDto dto){
-        this.admin = dto.isAdmin();
-        this.client= dto.isClient();
+        this.userName = dto.getUserName();
+        this.userId = dto.getUserId();
         this.id = dto.getId();
         return this;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
 
 

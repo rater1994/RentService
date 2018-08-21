@@ -52,8 +52,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findUser(Long id) {
-        User user = userRepository.findById(id).get();
-        return  user.toUserDto();
+        if(userRepository.findById(id).isPresent()){
+            return userRepository.findById(id).get().toUserDto();
+        }
+        return null;
     }
 
     @Override

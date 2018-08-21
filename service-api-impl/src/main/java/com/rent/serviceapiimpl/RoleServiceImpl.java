@@ -30,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
     public RoleDto roleAddDto(RoleDto roleDto) {
         Role role = new Role();
         role.update(roleDto);
-        return role.toRoleDto();
+        return roleRepository.save(role).toRoleDto();
     }
 
     @Override
@@ -38,8 +38,8 @@ public class RoleServiceImpl implements RoleService {
         final Optional<Role> dbRole = roleRepository.findById(id);
         if (dbRole.isPresent()) {
             Role role = dbRole.get();
-            role.setClient(roleDto.isClient());
-            role.setAdmin(roleDto.isAdmin());
+            role.setUserId(roleDto.getUserId());
+            role.setUserName(roleDto.getUserName());
             return roleRepository.save(role).toRoleDto();
         }
         return null;
@@ -47,8 +47,10 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleDto findRoleDto(Long id) {
-        Role role = roleRepository.findById(id).get();
-        return role.toRoleDto();
+        if(roleRepository.findById(id).isPresent()){
+           return roleRepository.findById(id).get().toRoleDto();
+        }
+        return null;
     }
 
     @Override
