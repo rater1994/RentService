@@ -18,8 +18,6 @@ public class RoleDto {
         this.userName = userName;
     }
 
-
-
     public Long getId() {
         return id;
     }
