@@ -67,7 +67,7 @@ public class Rent {
     }
 
     public RentDto toRentDto(){
-        RentDto rentDto = new RentDto();
+            RentDto rentDto = new RentDto();
 
         rentDto.setUserId(this.userId);
         rentDto.setCarId(this.carId);
