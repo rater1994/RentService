@@ -12,11 +12,9 @@ import java.util.List;
 @RequestMapping("/location")
 public interface LocationController {
 
-    @PreAuthorize("hasAnyRole('USER')")
+    @PreAuthorize("hasAnyRole('USER')")   //Add what user type you need   /endpoint ex: @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'TEST')")
     @GetMapping("/list")
     List<LocationDto> getAllLocation();
-
-
 
     @PostMapping("/add")
     ResponseEntity addLocation(@RequestBody LocationDto locationDto);
