@@ -34,7 +34,6 @@ public class Car {
     @Column(name ="MarkCar")
     private String markCar;
 
-
     @Column(name = "Used")
     private String used;
 

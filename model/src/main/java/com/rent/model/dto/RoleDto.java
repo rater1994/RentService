@@ -4,19 +4,9 @@ package com.rent.model.dto;
 import java.util.Objects;
 
 public class RoleDto {
-
-    //variables
     private Long id;
-    private Long userId;
-    private String userName;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    private String role;
 
     public Long getId() {
         return id;
@@ -26,12 +16,14 @@ public class RoleDto {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+
+    public String getRole() {
+        return role;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
+
 

@@ -3,6 +3,7 @@ package com.rent.restapi.Location;
 import com.rent.model.dto.LocationDto;
 import com.rent.model.entity.Location;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +12,11 @@ import java.util.List;
 @RequestMapping("/location")
 public interface LocationController {
 
+    @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/list")
     List<LocationDto> getAllLocation();
+
+
 
     @PostMapping("/add")
     ResponseEntity addLocation(@RequestBody LocationDto locationDto);

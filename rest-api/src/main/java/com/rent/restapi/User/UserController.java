@@ -18,14 +18,14 @@ public interface UserController {
     ResponseEntity addUser(@RequestBody UserDto userDto);
 
     @GetMapping("/find/{id}")
-    UserDto getUser(@PathVariable Long id);
+    UserDto getUser(@PathVariable Integer id);
 
     @PutMapping("/edit/{id}")
-    ResponseEntity updateUser(@RequestBody UserDto userDto, @PathVariable Long id);
+    ResponseEntity updateUser(@RequestBody UserDto userDto, @PathVariable Integer id);
 
     @DeleteMapping("/delete/{id}")
-    ResponseEntity deleteUser(@PathVariable Long id);
+    ResponseEntity deleteUser(@PathVariable Integer id);
 
-    @PostMapping("/login")
-    ResponseEntity login(@RequestBody UserDto userDto);
+  /*  @PostMapping("/login")
+    ResponseEntity login(@RequestBody UserDto userDto);*/
 }

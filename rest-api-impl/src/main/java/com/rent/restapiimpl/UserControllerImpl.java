@@ -41,13 +41,13 @@ public class UserControllerImpl implements UserController {
 
     //Get user from list wiht id
     @Override
-    public UserDto getUser(@PathVariable Long id) {
+    public UserDto getUser(@PathVariable Integer id) {
         return userService.findUser(id);
     }
 
     //Update user (change user or pw)
     @Override
-    public ResponseEntity updateUser(@RequestBody UserDto userDto,@PathVariable Long id) {
+    public ResponseEntity updateUser(@RequestBody UserDto userDto,@PathVariable Integer id) {
         if(userRepository.findById(id).isPresent()) {
             userService.editUser(userDto, id);
             return new ResponseEntity<>("User update!", HttpStatus.OK);
@@ -56,7 +56,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity deleteUser(@PathVariable Long id) {
+    public ResponseEntity deleteUser(@PathVariable Integer id) {
         try {
             userService.deleteUser(id);
           //  return new ResponseEntity("User deleted", HttpStatus.OK);
@@ -66,9 +66,9 @@ public class UserControllerImpl implements UserController {
         return ResponseEntity.ok("Successfully deleted!");
     }
 
-    @Override
+  /*  @Override
     public ResponseEntity login(UserDto userDto) {
         userService.login(userDto);
         return new ResponseEntity<>("just some test",HttpStatus.OK);
-    }
+    }*/
 }

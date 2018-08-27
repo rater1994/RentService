@@ -38,8 +38,7 @@ public class RoleServiceImpl implements RoleService {
         final Optional<Role> dbRole = roleRepository.findById(id);
         if (dbRole.isPresent()) {
             Role role = dbRole.get();
-            role.setUserId(roleDto.getUserId());
-            role.setUserName(roleDto.getUserName());
+            role.setRole(roleDto.getRole());
             return roleRepository.save(role).toRoleDto();
         }
         return null;

@@ -3,53 +3,55 @@ package com.rent.model.entity;
 import com.rent.model.dto.RoleDto;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "role")
 public class Role {
-    public String getUserName() {
-        return userName;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "role_id")
     private Long id;
 
-    @Column(name = "Admin")
-    private String  userName;
-
-    @Column(name = "UserId")
-    private Long userId;
+    @Column(name = "role")
+    private String  role;
 
 
-    public Long getUserId() {
-        return userId;
+
+    public Role(){
+
     }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
 
     public RoleDto toRoleDto(){
         RoleDto roleDto = new RoleDto();
 
-        roleDto.setUserName(this.userName);
-        roleDto.setUserId(this.userId);
+        roleDto.setRole(this.role);
         roleDto.setId(this.id);
         return roleDto;
     }
 
     public Role update(RoleDto dto){
-        this.userName = dto.getUserName();
-        this.userId = dto.getUserId();
+        this.role = dto.getRole();
         this.id = dto.getId();
         return this;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
 
 
