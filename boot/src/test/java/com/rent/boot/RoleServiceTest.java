@@ -36,21 +36,17 @@ public class RoleServiceTest {
     @Test
     public void ifRoleAdded(){
         RoleDto roleDto = new RoleDto();
-        roleDto.setUserId(2L);
-        roleDto.setUserName("User1");
+        roleDto.setRole("Admin");
 
         final RoleDto dbRole = roleService.roleAddDto(roleDto);
-
-        Assert.assertEquals(roleDto.getUserId(), dbRole.getUserId());
-        Assert.assertEquals(roleDto.getUserName(), dbRole.getUserName());
+        Assert.assertEquals(roleDto.getRole(), dbRole.getRole());
     }
 
 
     @Test
     public void ifFindRoleById(){
         RoleDto roleDto = new RoleDto();
-        roleDto.setUserName("User2");
-        roleDto.setUserId(13L);
+        roleDto.setRole("ADMIN");
 
 
         final RoleDto dbRole = roleService.roleAddDto(roleDto);
@@ -61,19 +57,16 @@ public class RoleServiceTest {
 
     @Test
     public void ifEditRole(){
-        RoleDto inputRoleDto = new RoleDto();
-        inputRoleDto.setUserId(13L);
-        inputRoleDto.setUserName("User1");
+        RoleDto inputRoleDto = new RoleDto();;
+        inputRoleDto.setRole("ADMIN");
 
         final RoleDto dbRole = roleService.roleAddDto(inputRoleDto);
 
-        inputRoleDto.setUserId(123L);
-        inputRoleDto.setUserName("User1");
+        inputRoleDto.setRole("ADMIN");
 
         final RoleDto dbRole2 = roleService.editRoleDto(dbRole, dbRole.getId());
 
-        Assert.assertEquals(dbRole.getUserId(),dbRole2.getUserId());
-        Assert.assertEquals(dbRole.getUserName(), dbRole2.getUserName());
+        Assert.assertEquals(dbRole.getRole(), dbRole2.getRole());
     }
 
 
@@ -90,8 +83,7 @@ public class RoleServiceTest {
     @Test
     public void ifDeleteRole(){
         RoleDto roleDto = new RoleDto();
-        roleDto.setUserId(13L);
-        roleDto.setUserName("User1");
+        roleDto.setRole("ADMIN");
 
         final RoleDto dbRole = roleService.roleAddDto(roleDto);
 

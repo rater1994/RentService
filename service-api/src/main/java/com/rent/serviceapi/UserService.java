@@ -11,8 +11,8 @@ public interface UserService  {
 
     List<UserDto> getAllUsers();
     UserDto addUser(@RequestBody UserDto userDto);
-    UserDto editUser(@RequestBody UserDto userDto, @PathVariable Long id);
-    UserDto findUser(@PathVariable Long id);
+    UserDto editUser(@RequestBody UserDto userDto, @PathVariable Integer id);
+    UserDto findUser(@PathVariable Integer id);
     UserDto login(@RequestBody UserDto userDto);
-    void deleteUser(@PathVariable Long id) throws RuntimeException;
+    void deleteUser(@PathVariable Integer id) throws RuntimeException;
 }

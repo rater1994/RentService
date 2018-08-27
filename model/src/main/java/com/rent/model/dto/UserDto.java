@@ -4,7 +4,7 @@ import java.util.Objects;
 public class UserDto {
     private String username;
     private String password;
-    private Long id;
+    private Integer id;
 
     public String getUsername() {
         return username;
@@ -22,11 +22,11 @@ public class UserDto {
         this.password = password;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }

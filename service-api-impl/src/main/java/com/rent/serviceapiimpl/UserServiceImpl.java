@@ -14,6 +14,7 @@ import javax.xml.transform.OutputKeys;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto editUser(UserDto userDto, Long id) {
+    public UserDto editUser(UserDto userDto, Integer id) {
         if (userRepository.findById(id).isPresent()) {
             User user = new User();
             user.setUsername(userDto.getUsername());
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findUser(Long id) {
+    public UserDto findUser(Integer id) {
         if(userRepository.findById(id).isPresent()){
             return userRepository.findById(id).get().toUserDto();
         }
@@ -60,9 +61,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto login(UserDto userDto) {
-        User user = userRepository.findByUsername(userDto.getUsername());
+        Optional<User>  user = userRepository.findByUsername(userDto.getUsername());
         if (user != null) {
-            if (user.getPassword().equals(userDto.getPassword())) {
+            if (userDto.getPassword().equals(userDto.getPassword())) {
                 System.out.println("Test");
             } else {
                 System.out.println("Test2");
@@ -74,7 +75,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void deleteUser(Long id) throws RuntimeException {
+    public void deleteUser(Integer id) throws RuntimeException {
         try {
             userRepository.deleteById(id);
         }catch (Exception e){

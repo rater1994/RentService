@@ -34,7 +34,6 @@ public class Car {
     @Column(name ="MarkCar")
     private String markCar;
 
-//If the care is used  to know in timess
     @Column(name = "Used")
     private String used;
 
