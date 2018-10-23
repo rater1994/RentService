@@ -1,36 +1,39 @@
-package com.rent.model.entity;
+package model;
 
-import com.rent.model.entity.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
-public class CustomUserDetails extends User implements UserDetails {
+public class userDetails implements UserDetails {
 
-    public CustomUserDetails(final User user) {
-        super(user);
+   private String username;
+   private Integer token;
+   private String id;
+
+   private Collection<? extends  GrantedAuthority> authorities;
+
+
+    public userDetails(String username, Integer token, String id, Collection<? extends GrantedAuthority> authorities) {
+        this.username = username;
+        this.token = token;
+        this.id = id;
+        this.authorities = authorities;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return getRoles()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
-                .collect(Collectors.toList());
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return super.getPassword();
+        return null;
     }
 
     @Override
     public String getUsername() {
-        return super.getUsername();
+        return username;
     }
 
     @Override
@@ -51,5 +54,10 @@ public class CustomUserDetails extends User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+    public String getId() {
+        return id;
     }
 }

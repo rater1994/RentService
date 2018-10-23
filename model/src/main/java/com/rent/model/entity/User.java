@@ -1,10 +1,13 @@
 package com.rent.model.entity;
 import com.rent.model.dto.UserDto;
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Collection;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "user_id")
@@ -16,23 +19,29 @@ public class User {
     @Column(name = "Password")
     private String password;
 
+    private String token;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private String roles;
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 
     public User(){
 
     }
 
+    public String getRoles() {
+        return roles;
+    }
+
     public User(User user) {
         this.username = user.getUsername();
         this.password = user.getPassword();
-        this.roles = user.getRoles();
+        this.roles = user.roles;
         this.id = user.getId();
+
     }
-
-
 
 
     public String getPassword() {
@@ -65,21 +74,16 @@ public class User {
         userDto.setUsername(this.username);
         userDto.setPassword(this.password);
         userDto.setId(this.id);
+        userDto.setRoles(this.roles);
         return userDto;
     }
 
     public User update( UserDto dto){
         this.username = dto.getUsername();
         this.password = dto.getPassword();
+        this.roles = dto.getRoles();
         this.id = dto.getId();
         return this;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }

@@ -1,10 +1,15 @@
 package com.rent.model.dto;
-import java.util.Objects;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
 
 public class UserDto {
     private String username;
     private String password;
     private Integer id;
+    private String roles;
+
+
 
     public String getUsername() {
         return username;
@@ -29,4 +34,13 @@ public class UserDto {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
 }
